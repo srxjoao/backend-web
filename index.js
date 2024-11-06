@@ -1,23 +1,22 @@
-const http = require("http");
-const  url  = require("url");
-const app = http.createServer((req,res)=>{
-    // Todas as requisições que chegaem
-    // Vão ser tratradas nessa função
-    res.statusCode = 200;
-    res.setHeader("Content-Type", "text/html;charset=utf8");
-    const urlInfo = url.parse(req.url, true);
+// Extra nodemon e um modulo para a reiniciar o servidor automatico, para a execução do projeto utilizamos o comando npm start.
+const express = require("express");
 
-    if(urlInfo.pathname == "/usuario"){
-        res.end("Olá Usuário, João");
-    }
-    else if(urlInfo.pathname == "/"){
-        res.end("Página Home");
-    }
-    else if(urlInfo.pathname == "/marvel"){
-        res.end("O universo MCU é melhor que DC!");
-    }
+const app = express();
+
+// Criar rotas
+// post ele vai cripitografar a informção exemplo tenhoo uma senha ele vai a deixar cripitografada, com get e visivel a informação,não enviamos informações sensiveis com o get
+app.get("/", (req,res)=>{
+    res.send("Você acessou a raiz do projeto");
 });
 
-app.listen(8000, (err)=> {
-    console.log("Servidor rodando")
+app.get("/user", (req,res)=>{
+    res.send("Você acessou a rota de usuários");
+});
+
+app.get("/products", (req,res)=>{
+    res.send("Você acessou a rota de usuários produtos");
 })
+
+app.listen(8000,(err)=>{
+    console.log("Server Rodando");
+});

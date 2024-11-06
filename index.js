@@ -13,9 +13,10 @@ app.get("/user", (req,res)=>{
     res.send("Você acessou a rota de usuários");
 });
 
-app.get("/products", (req,res)=>{
-    res.send("Você acessou a rota de usuários produtos");
-})
+app.get("/user/:nome", (req,res)=>{
+    let nome = req.params.nome;
+    res.send(`Olá ${nome}`);
+});
 
 app.listen(8000,(err)=>{
     console.log("Server Rodando");
